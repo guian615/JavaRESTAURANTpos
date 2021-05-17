@@ -92,7 +92,7 @@ public class loginForm extends javax.swing.JFrame {
         });
         jPanel1.add(out, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 0, 20, 30));
 
-        jPanel2.setBackground(new java.awt.Color(204, 204, 255));
+        jPanel2.setBackground(new java.awt.Color(255, 153, 51));
         jPanel2.setForeground(new java.awt.Color(255, 255, 255));
 
         jLabel4.setBackground(new java.awt.Color(204, 204, 255));
@@ -147,7 +147,7 @@ public class loginForm extends javax.swing.JFrame {
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
        try{
            Class.forName("com.mysql.jdbc.Driver");
-           Connection con = DriverManager.getConnection("jdbc:mysql://remotemysql.com/1qU9hyL4d9", "1qU9hyL4d9", "ysS8Z4Z1ts");
+           Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/java", "root", "");
            String sql = "Select * from login where username=? and password=?";
            PreparedStatement pst  = (PreparedStatement) con.prepareStatement(sql);
            pst.setString(1, username.getText());
