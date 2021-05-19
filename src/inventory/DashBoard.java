@@ -1,6 +1,10 @@
 
 package inventory;
 
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 
 public class DashBoard extends javax.swing.JFrame {
 
@@ -203,7 +207,14 @@ public class DashBoard extends javax.swing.JFrame {
     }//GEN-LAST:event_out1MouseClicked
 
     private void MenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MenuMouseClicked
-        Menu menu = new Menu();
+        Menu menu = null;
+        try {
+            menu = new Menu();
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(DashBoard.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(DashBoard.class.getName()).log(Level.SEVERE, null, ex);
+        }
         JDesktopPanel.removeAll();
         JDesktopPanel.add(menu).setVisible(true);
     }//GEN-LAST:event_MenuMouseClicked
