@@ -519,7 +519,7 @@ public transactions() throws ClassNotFoundException, SQLException {
             pst.setInt(2, Integer.parseInt(id.getText()));
 
             pst.executeUpdate();
-            JOptionPane.showMessageDialog(this, "Order Was on process of Deliver");
+            JOptionPane.showMessageDialog(this, "Order Was on process of Delivery");
             upDateDb();
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
