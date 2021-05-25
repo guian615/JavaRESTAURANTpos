@@ -256,8 +256,8 @@ public class Menu extends javax.swing.JInternalFrame {
                                 .addGap(18, 18, 18)
                                 .addComponent(priceField, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 364, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(23, 23, 23))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 348, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(39, 39, 39))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -291,10 +291,10 @@ public class Menu extends javax.swing.JInternalFrame {
                             .addComponent(add, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addComponent(clearField, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(37, Short.MAX_VALUE))
+                .addContainerGap(47, Short.MAX_VALUE))
         );
 
-        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 690, 330));
+        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 690, 340));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -364,7 +364,10 @@ public class Menu extends javax.swing.JInternalFrame {
     private void deleteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_deleteMouseClicked
         DefaultTableModel RecordTable = (DefaultTableModel) table.getModel();
         int SelectedRows = table.getSelectedRow();
-
+        int p = JOptionPane.showConfirmDialog(null,"Do you really want to delete product?","Delete",JOptionPane.YES_NO_OPTION );
+        if(p==0){
+            
+        
         try {
 
             ID = Integer.parseInt(RecordTable.getValueAt(SelectedRows, 0).toString());
@@ -387,6 +390,7 @@ public class Menu extends javax.swing.JInternalFrame {
             Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
             Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
+        }
         }
     }//GEN-LAST:event_deleteMouseClicked
 

@@ -141,7 +141,7 @@
                                   </Group>
                                   <Component id="menuPrice" min="-2" pref="142" max="-2" attributes="0"/>
                               </Group>
-                              <Component id="deleteBtn" alignment="0" min="-2" pref="107" max="-2" attributes="0"/>
+                              <Component id="cancelBtn" alignment="0" min="-2" pref="107" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <Group type="102" alignment="1" attributes="0">
@@ -158,23 +158,23 @@
                           <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
                           <Component id="clearField" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="32767" attributes="0"/>
-                          <Component id="totalBtn" min="-2" pref="137" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
+                          <Component id="totalBtn" min="-2" pref="125" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="58" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <Group type="103" groupAlignment="1" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
                                   <Component id="confirmBtn" min="-2" pref="107" max="-2" attributes="0"/>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Component id="jLabel6" max="32767" attributes="0"/>
+                                  <Component id="jLabel6" pref="54" max="32767" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="jPanel5" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="total" min="-2" pref="195" max="-2" attributes="0"/>
+                                  <Component id="total" min="-2" pref="178" max="-2" attributes="0"/>
                               </Group>
-                              <Component id="jScrollPane1" min="-2" pref="428" max="-2" attributes="0"/>
+                              <Component id="jScrollPane1" min="-2" pref="411" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace pref="22" max="32767" attributes="0"/>
+                          <EmptySpace pref="30" max="32767" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -227,7 +227,7 @@
                       <Group type="102" attributes="0">
                           <EmptySpace min="-2" pref="7" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="deleteBtn" min="-2" pref="37" max="-2" attributes="0"/>
+                              <Component id="cancelBtn" min="-2" pref="37" max="-2" attributes="0"/>
                               <Component id="deliverBtn" alignment="0" min="-2" pref="37" max="-2" attributes="0"/>
                               <Component id="totalBtn" alignment="0" min="-2" pref="37" max="-2" attributes="0"/>
                           </Group>
@@ -338,7 +338,7 @@
             <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="addBtnMouseClicked"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="deleteBtn">
+        <Component class="javax.swing.JButton" name="cancelBtn">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="66" green="66" red="0" type="rgb"/>
@@ -349,10 +349,10 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Delete Order"/>
+            <Property name="text" type="java.lang.String" value="Cancel Order"/>
           </Properties>
           <Events>
-            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="deleteBtnMouseClicked"/>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="cancelBtnMouseClicked"/>
           </Events>
         </Component>
         <Component class="javax.swing.JButton" name="totalBtn">
@@ -419,6 +419,7 @@
           </Properties>
           <Events>
             <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="deliverBtnMouseClicked"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="deliverBtnActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="menuPrice">

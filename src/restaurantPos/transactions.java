@@ -85,7 +85,7 @@ public transactions() throws ClassNotFoundException, SQLException {
         jScrollPane1 = new javax.swing.JScrollPane();
         transTable = new javax.swing.JTable();
         addBtn = new javax.swing.JButton();
-        deleteBtn = new javax.swing.JButton();
+        cancelBtn = new javax.swing.JButton();
         totalBtn = new javax.swing.JButton();
         confirmBtn = new javax.swing.JButton();
         total = new javax.swing.JTextField();
@@ -179,13 +179,13 @@ public transactions() throws ClassNotFoundException, SQLException {
             }
         });
 
-        deleteBtn.setBackground(new java.awt.Color(0, 102, 102));
-        deleteBtn.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        deleteBtn.setForeground(new java.awt.Color(255, 255, 255));
-        deleteBtn.setText("Delete Order");
-        deleteBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+        cancelBtn.setBackground(new java.awt.Color(0, 102, 102));
+        cancelBtn.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        cancelBtn.setForeground(new java.awt.Color(255, 255, 255));
+        cancelBtn.setText("Cancel Order");
+        cancelBtn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                deleteBtnMouseClicked(evt);
+                cancelBtnMouseClicked(evt);
             }
         });
 
@@ -222,6 +222,11 @@ public transactions() throws ClassNotFoundException, SQLException {
         deliverBtn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 deliverBtnMouseClicked(evt);
+            }
+        });
+        deliverBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deliverBtnActionPerformed(evt);
             }
         });
 
@@ -331,7 +336,7 @@ public transactions() throws ClassNotFoundException, SQLException {
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(quantity, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addComponent(menuPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(deleteBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(cancelBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -344,20 +349,20 @@ public transactions() throws ClassNotFoundException, SQLException {
                         .addGap(28, 28, 28)
                         .addComponent(clearField)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(totalBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(46, 46, 46))
+                        .addComponent(totalBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(58, 58, 58))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
                                 .addComponent(confirmBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, 54, Short.MAX_VALUE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(total, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 428, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(22, Short.MAX_VALUE))))
+                                .addComponent(total, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 411, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(30, Short.MAX_VALUE))))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -397,7 +402,7 @@ public transactions() throws ClassNotFoundException, SQLException {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(7, 7, 7)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(deleteBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cancelBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(deliverBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(totalBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel2Layout.createSequentialGroup()
@@ -448,10 +453,11 @@ public transactions() throws ClassNotFoundException, SQLException {
         total.setText(RecordTable.getValueAt(SelectedRows, 5).toString());
     }//GEN-LAST:event_transTableMouseClicked
 
-    private void deleteBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_deleteBtnMouseClicked
+    private void cancelBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelBtnMouseClicked
         DefaultTableModel RecordTable = (DefaultTableModel) transTable.getModel();
         int SelectedRows = transTable.getSelectedRow();
-
+         int p = JOptionPane.showConfirmDialog(null,"Do you really want to Cancel Order?","Delete",JOptionPane.YES_NO_OPTION );
+        if(p==0){
         try {
 
             ID = Integer.parseInt(RecordTable.getValueAt(SelectedRows, 0).toString());
@@ -469,14 +475,15 @@ public transactions() throws ClassNotFoundException, SQLException {
 
             pst.setInt(1, ID);
             pst.executeUpdate();
-            JOptionPane.showMessageDialog(this, "Record Deleted Successfully");
+            JOptionPane.showMessageDialog(this, "Order Cancelled Successfully");
             upDateDb();
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
             Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }//GEN-LAST:event_deleteBtnMouseClicked
+        }
+    }//GEN-LAST:event_cancelBtnMouseClicked
 
     private void confirmBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_confirmBtnMouseClicked
         try {
@@ -498,6 +505,11 @@ public transactions() throws ClassNotFoundException, SQLException {
     }//GEN-LAST:event_confirmBtnMouseClicked
 
     private void deliverBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_deliverBtnMouseClicked
+        DefaultTableModel RecordTable = (DefaultTableModel) transTable.getModel();
+        int SelectedRows = transTable.getSelectedRow();
+        if(!"pending".equals(RecordTable.getValueAt(SelectedRows, 6).toString())){
+        
+                
         try {
             Class.forName("com.mysql.jdbc.Driver");
             sqlConn = DriverManager.getConnection(dbname, username, password);
@@ -514,9 +526,16 @@ public transactions() throws ClassNotFoundException, SQLException {
         } catch (SQLException ex) {
             Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
         }
+        }else{
+            JOptionPane.showMessageDialog(this, "Order is Still Pending");
+        }
+
     }//GEN-LAST:event_deliverBtnMouseClicked
 
     private void totalBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_totalBtnMouseClicked
+        DefaultTableModel RecordTable = (DefaultTableModel) transTable.getModel();
+        int SelectedRows = transTable.getSelectedRow();
+        if("to ship".equals(RecordTable.getValueAt(SelectedRows, 6).toString())){
         try {
             Class.forName("com.mysql.jdbc.Driver");
             sqlConn = DriverManager.getConnection(dbname, username, password);
@@ -533,6 +552,9 @@ public transactions() throws ClassNotFoundException, SQLException {
         } catch (SQLException ex) {
             Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
         }
+        }else{
+            JOptionPane.showMessageDialog(this, "Order is not yet Delivered");
+        }
     }//GEN-LAST:event_totalBtnMouseClicked
 
     private void clearFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearFieldActionPerformed
@@ -544,12 +566,16 @@ public transactions() throws ClassNotFoundException, SQLException {
         total.setText("");
     }//GEN-LAST:event_clearFieldActionPerformed
 
+    private void deliverBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deliverBtnActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_deliverBtnActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addBtn;
+    private javax.swing.JButton cancelBtn;
     private javax.swing.JButton clearField;
     private javax.swing.JButton confirmBtn;
-    private javax.swing.JButton deleteBtn;
     private javax.swing.JButton deliverBtn;
     private javax.swing.JTextField id;
     private javax.swing.JLabel jLabel1;

@@ -37,7 +37,9 @@ public class LoginPage extends javax.swing.JFrame {
         jPanel1.setForeground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        username.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
+        username.setBackground(new java.awt.Color(0, 153, 153));
+        username.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
+        username.setForeground(new java.awt.Color(255, 255, 255));
         username.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         username.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -46,7 +48,9 @@ public class LoginPage extends javax.swing.JFrame {
         });
         jPanel1.add(username, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 140, 172, 35));
 
-        password.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
+        password.setBackground(new java.awt.Color(0, 153, 153));
+        password.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
+        password.setForeground(new java.awt.Color(255, 255, 255));
         password.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         jPanel1.add(password, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 220, 172, 35));
 
