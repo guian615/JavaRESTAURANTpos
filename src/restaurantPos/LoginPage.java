@@ -184,7 +184,6 @@ public class LoginPage extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1MouseClicked
 
     private void cancelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelMouseClicked
-//        new LoginPage().setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_cancelMouseClicked
 

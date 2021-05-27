@@ -418,8 +418,14 @@ public class Admin extends javax.swing.JFrame {
     }//GEN-LAST:event_MenuMouseClicked
 
     private void dashboardMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dashboardMouseClicked
-         Dashboards dash = null;
-         dash = new Dashboards();
+        Dashboards dash = null;
+        try {
+            dash = new Dashboards();
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Admin.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(Admin.class.getName()).log(Level.SEVERE, null, ex);
+        }
         JDesktopPanel.removeAll();
         JDesktopPanel.add(dash).setVisible(true);
     }//GEN-LAST:event_dashboardMouseClicked
