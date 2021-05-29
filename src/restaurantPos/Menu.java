@@ -14,25 +14,29 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 public class Menu extends javax.swing.JInternalFrame {
-
+    //private keyword which declares a member's access as private 
+    //private classes of String initializing database  username,password,and dbname
     private static final String username = "root";
     private static final String password = "";
     private static final String dbname = "jdbc:mysql://localhost:3306/java";
+    
+    
     int q, i, ID, deleteItem;
-
+    
+    //variables holding a null values
     Connection sqlConn = null;
     PreparedStatement pst = null;
     ResultSet rs = null;
 
     public Menu() throws ClassNotFoundException, SQLException {
         initComponents();
-        upDateDb();
-        id.setVisible(false);
+        menuFunction(); //calling the function
+        id.setVisible(false); // input field of id was set into setVisible of false
 
     }
 
-    //function
-    public void upDateDb() throws ClassNotFoundException, SQLException {
+    //function named menuFunction() to check the conditions 
+    public void menuFunction() throws ClassNotFoundException, SQLException {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             sqlConn = DriverManager.getConnection(dbname, username, password);
@@ -305,7 +309,7 @@ public class Menu extends javax.swing.JInternalFrame {
 
             pst.executeUpdate();
             JOptionPane.showMessageDialog(this, "Record Added");
-            upDateDb();
+            menuFunction();
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
@@ -314,6 +318,8 @@ public class Menu extends javax.swing.JInternalFrame {
 
     }//GEN-LAST:event_addMouseClicked
 
+
+//setting the textfield into empty string once clear button is clicked
     private void clearFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearFieldActionPerformed
         id.setText("");
         nameField.setText("");
@@ -322,6 +328,7 @@ public class Menu extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_clearFieldActionPerformed
 
     private void updateMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_updateMouseClicked
+         //try catch for updating data into database
         try {
             Class.forName("com.mysql.jdbc.Driver");
             sqlConn = DriverManager.getConnection(dbname, username, password);
@@ -334,15 +341,16 @@ public class Menu extends javax.swing.JInternalFrame {
 
             pst.executeUpdate();
             JOptionPane.showMessageDialog(this, "Record Updated");
-            upDateDb();
+            menuFunction();
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
             Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_updateMouseClicked
-
+//table on mouseClicked for displayong the data in the text field once clicked
     private void tableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableMouseClicked
+      
         DefaultTableModel RecordTable = (DefaultTableModel) table.getModel();
         int SelectedRows = table.getSelectedRow();
         id.setText(RecordTable.getValueAt(SelectedRows, 0).toString());
@@ -353,13 +361,15 @@ public class Menu extends javax.swing.JInternalFrame {
 
     }//GEN-LAST:event_tableMouseClicked
 
+    //delete button on mouseClicked
     private void deleteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_deleteMouseClicked
         DefaultTableModel RecordTable = (DefaultTableModel) table.getModel();
         int SelectedRows = table.getSelectedRow();
         int p = JOptionPane.showConfirmDialog(null,"Do you really want to delete product?","Delete",JOptionPane.YES_NO_OPTION );
         if(p==0){
+         
             
-        
+        //try catch for deleting data in the table and in database   
         try {
 
             ID = Integer.parseInt(RecordTable.getValueAt(SelectedRows, 0).toString());
@@ -377,7 +387,7 @@ public class Menu extends javax.swing.JInternalFrame {
             pst.setInt(1, ID);
             pst.executeUpdate();
             JOptionPane.showMessageDialog(this, "Record Deleted Successfully");
-            upDateDb();
+            menuFunction();
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {

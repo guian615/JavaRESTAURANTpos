@@ -16,21 +16,26 @@ import static jdk.nashorn.internal.runtime.Debug.id;
 
 public class Dashboards extends javax.swing.JInternalFrame {
 
+    //private keyword which declares a member's access as private 
+    //private classes of String initializing database  username,password,and dbname
     private static final String username = "root";
     private static final String password = "";
     private static final String dbname = "jdbc:mysql://localhost:3306/java";
     int q, i, ID, deleteItem;
 
+    //variables holding a null values
     Connection sqlConn = null;
     PreparedStatement pst = null;
     ResultSet rs = null;
 
     public Dashboards() throws ClassNotFoundException, SQLException {
         initComponents();
-        salesToday();
-        totalMenus();
+        salesToday(); // caling the function named salesToday()
+        totalMenus(); //calling thr function named totalMenus()
     }
-    //function
+    
+    
+    //function to initiate the conditions of the sum of subtotal from database table named transaction
     public void salesToday() throws ClassNotFoundException, SQLException {
         try {
             Class.forName("com.mysql.jdbc.Driver");
@@ -40,24 +45,21 @@ public class Dashboards extends javax.swing.JInternalFrame {
             pst = sqlConn.prepareStatement("select sum(subtotal) as total from transaction where added_at=? and status='paid'");
                pst.setString(1,nowDate.toString());
            rs = pst.executeQuery();
-         if(rs.next()){
-//             String rt = rs.getFloat("total");
-           String d = String.format("%.2f", rs.getFloat("total"));
+        
+           if(rs.next()){
+           String d = String.format("%.2f", rs.getFloat("total")); //formatting the float into two decimal place
 
         earningsToday.setText(d);
-//        String.valueOf(String.format("%.2f", rt))
        }
          
         
-
       } catch (Exception ex) {
             System.out.println(ex);
-//           JOptionPane.showMessageDialog(null, ex);
        }
     }
     
   
-    //function
+    //function to initiate the total number of menus by selecting count(*) as totalCount(variable) from database table named product
     public void totalMenus() throws ClassNotFoundException, SQLException {
         try {
             Class.forName("com.mysql.jdbc.Driver");
@@ -67,9 +69,7 @@ public class Dashboards extends javax.swing.JInternalFrame {
          if(rs.next()){
         totalMenus.setText(rs.getString("totalCount"));
        }
-         
         
-
       } catch (Exception ex) {
            JOptionPane.showMessageDialog(null, ex);
        }

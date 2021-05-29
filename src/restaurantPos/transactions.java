@@ -20,22 +20,24 @@ import javax.swing.table.DefaultTableModel;
 
 
 public class transactions extends javax.swing.JInternalFrame {
-
+    //private keyword which declares a member's access as private 
+    //private classes of String initializing database  username,password,and dbname
     private static final String username = "root";
     private static final String password = "";
     private static final String dbname = "jdbc:mysql://localhost:3306/java";
     int q, i, ID, deleteItem;
 
+    //variables holding a null values
     Connection sqlConn = null;
     PreparedStatement pst = null;
     ResultSet rs = null;
 public transactions() throws ClassNotFoundException, SQLException {
         initComponents();
-        transDb();
-        id.setVisible(false);
+        transDb(); //calling the function
+        id.setVisible(false); //id of the transaction page text field was set into visible false
     }
     
-    //function
+    //transDB function to initiate a condition for selecting from database
     public void transDb() throws ClassNotFoundException, SQLException {
         try {
             Class.forName("com.mysql.jdbc.Driver");
@@ -440,6 +442,7 @@ public transactions() throws ClassNotFoundException, SQLException {
 
     }//GEN-LAST:event_addBtnMouseClicked
 
+//table on mouseClicked for displayong the data in the text field once clicked
     private void transTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_transTableMouseClicked
         DefaultTableModel RecordTable = (DefaultTableModel) transTable.getModel();
         int SelectedRows = transTable.getSelectedRow();
@@ -452,6 +455,7 @@ public transactions() throws ClassNotFoundException, SQLException {
         total.setText(RecordTable.getValueAt(SelectedRows, 5).toString());
     }//GEN-LAST:event_transTableMouseClicked
 
+    //reject button on mouseClicked event for rejecting  data using delete querry in CRUD
     private void rejectBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rejectBtnMouseClicked
         DefaultTableModel RecordTable = (DefaultTableModel) transTable.getModel();
         int SelectedRows = transTable.getSelectedRow();
@@ -460,6 +464,7 @@ public transactions() throws ClassNotFoundException, SQLException {
         if("pending".equals(RecordTable.getValueAt(SelectedRows, 6).toString())){   
         if(p==0){
         
+            //try catch for deleting data in the database
         try {
 
             ID = Integer.parseInt(RecordTable.getValueAt(SelectedRows, 0).toString());
@@ -491,6 +496,7 @@ public transactions() throws ClassNotFoundException, SQLException {
         }
     }//GEN-LAST:event_rejectBtnMouseClicked
 
+    //confirm button on mouseClicked for updating confirm status in the database
     private void confirmBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_confirmBtnMouseClicked
         try {
             Class.forName("com.mysql.jdbc.Driver");
@@ -510,9 +516,12 @@ public transactions() throws ClassNotFoundException, SQLException {
         }
     }//GEN-LAST:event_confirmBtnMouseClicked
 
+     //deliver button on mouseClicked for updating to ship status in the database
     private void deliverBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_deliverBtnMouseClicked
         DefaultTableModel RecordTable = (DefaultTableModel) transTable.getModel();
         int SelectedRows = transTable.getSelectedRow();
+        
+        //checking if the status is not equal to the status of pending 
         if(!"pending".equals(RecordTable.getValueAt(SelectedRows, 6).toString())){
         
                 
@@ -538,9 +547,12 @@ public transactions() throws ClassNotFoundException, SQLException {
 
     }//GEN-LAST:event_deliverBtnMouseClicked
 
+     //total button on mouseClicked for updating paid status in the database
     private void totalBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_totalBtnMouseClicked
         DefaultTableModel RecordTable = (DefaultTableModel) transTable.getModel();
         int SelectedRows = transTable.getSelectedRow();
+        
+        //checking if the status equals to the status of to ship
         if("to ship".equals(RecordTable.getValueAt(SelectedRows, 6).toString())){
         try {
             Class.forName("com.mysql.jdbc.Driver");
@@ -563,6 +575,7 @@ public transactions() throws ClassNotFoundException, SQLException {
         }
     }//GEN-LAST:event_totalBtnMouseClicked
 
+    //clear button on mouseClicked event to set the text field into empty string
     private void clearFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearFieldActionPerformed
         id.setText("");
         menuName.setText("");

@@ -404,6 +404,8 @@ public class Admin extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_jLabel1MouseClicked
 
+
+//menu panel redirecting to menu page if menu panel is clicked
     private void MenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MenuMouseClicked
         Menu menu = null;
         try {
@@ -417,6 +419,7 @@ public class Admin extends javax.swing.JFrame {
         JDesktopPanel.add(menu).setVisible(true);
     }//GEN-LAST:event_MenuMouseClicked
 
+    //dashboard panel redirecting to dashboard page if menu panel is clicked
     private void dashboardMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dashboardMouseClicked
         Dashboards dash = null;
         try {
@@ -430,6 +433,8 @@ public class Admin extends javax.swing.JFrame {
         JDesktopPanel.add(dash).setVisible(true);
     }//GEN-LAST:event_dashboardMouseClicked
 
+
+//transaction panel redirecting to transaction page if menu panel is clicked
     private void transactionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_transactionMouseClicked
          transactions trans = null;
         try {
